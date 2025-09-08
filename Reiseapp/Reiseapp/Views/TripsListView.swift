@@ -2,19 +2,26 @@
 //  TripsListView.swift
 //  Reiseapp
 //
-//  Created by Nikolas Kato on 08.09.25.
+
+
 //
+
+
+//  Created by Waldemar Dietler on 08.09.25.
+//
+
+
 
 import SwiftUI
 
 struct TripsListView: View {
     @StateObject private var vm: TripsListViewModel
-
+    
     // Repo wird vom Aufrufer (z. B. RootView) übergeben
     init(repo: TripRepository) {
         _vm = StateObject(wrappedValue: TripsListViewModel(repo: repo))
     }
-
+    
     var body: some View {
         Group {
             if vm.trips.isEmpty {
@@ -56,7 +63,7 @@ struct TripsListView: View {
         }
         .task { await vm.load() }
     }
-
+    
     private var filtered: [Trip] {
         let q = vm.query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !q.isEmpty else { return vm.trips }
