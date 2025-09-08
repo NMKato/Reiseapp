@@ -14,6 +14,7 @@ struct Trip: Identifiable, Hashable {
     var destination: String
     var startDate: Date?
     var endDate: Date?
+    var photoURL: URL?
     var imageName: String?
 
     var days: [DayPlan]
@@ -25,6 +26,7 @@ struct Trip: Identifiable, Hashable {
         startDate: Date? = nil,
         endDate: Date? = nil,
         imageName: String? = nil,
+        photoURL: URL? = nil,
         days: [DayPlan] = []
     ) {
         self.id = id
@@ -33,6 +35,7 @@ struct Trip: Identifiable, Hashable {
         self.startDate = startDate
         self.endDate = endDate
         self.imageName = imageName
+        self.photoURL = photoURL
         self.days = days
     }
 }

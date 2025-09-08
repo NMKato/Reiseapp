@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct TripDetailView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    let trip: Trip
 
-#Preview {
-    TripDetailView()
+    var body: some View {
+        VStack(spacing: 16) {
+            Text(trip.title).font(.largeTitle.bold())
+            Text(trip.destination).font(.title3).foregroundStyle(.secondary)
+            Spacer()
+        }
+        .padding()
+        .navigationTitle("Reise-Details")
+        .navigationBarTitleDisplayMode(.inline)
+    }
 }

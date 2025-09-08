@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct RootView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @Environment(\.appEnvironment) private var env
 
-#Preview {
-    RootView()
+    var body: some View {
+        TabView {
+            NavigationStack { TripsListView(repo: env.tripRepository) }
+                .tabItem { Label("Reisen", systemImage: "list.bullet") }
+
+            NavigationStack { Text("Explore (später)") }
+                .tabItem { Label("Entdecken", systemImage: "globe") }
+
+            NavigationStack { Text("Einstellungen (später)") }
+                .tabItem { Label("Einstellungen", systemImage: "gearshape") }
+        }
+    }
 }
