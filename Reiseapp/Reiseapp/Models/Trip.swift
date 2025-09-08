@@ -6,14 +6,33 @@
 //
 
 import SwiftUI
+import Foundation
 
-struct Trip: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        
+struct Trip: Identifiable, Hashable {
+    let id: UUID
+    var title: String
+    var destination: String
+    var startDate: Date?
+    var endDate: Date?
+    var imageName: String?
+
+    var days: [DayPlan]
+
+    init(
+        id: UUID = UUID(),
+        title: String,
+        destination: String,
+        startDate: Date? = nil,
+        endDate: Date? = nil,
+        imageName: String? = nil,
+        days: [DayPlan] = []
+    ) {
+        self.id = id
+        self.title = title
+        self.destination = destination
+        self.startDate = startDate
+        self.endDate = endDate
+        self.imageName = imageName
+        self.days = days
     }
-}
-
-#Preview {
-    Trip()
 }
