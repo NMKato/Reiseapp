@@ -10,7 +10,12 @@ import Foundation
 
 final class MockTripRepository: TripRepository {
     var items: [Trip] = [
-        Trip(title: "UI Preview", destination: "📍 Anywhere")
+        Trip(title: "UI Preview",
+                     startLocation: "Home",
+                     destination: "📍 Anywhere",
+                     startDate: Date().addingTimeInterval(86400),
+                     ticketPrice: 49.99,
+                     persons: ["Alex"])
     ]
 
     func fetchTrips() async throws -> [Trip] { items }
