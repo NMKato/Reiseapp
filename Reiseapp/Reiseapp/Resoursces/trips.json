@@ -1,1 +1,114 @@
-
+[
+    {
+        "id": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
+        "title": "Sommerurlaub Italien",
+        "destination": "Rom",
+        "startDate": "2025-07-15T10:00:00Z",
+        "endDate": "2025-07-22T18:00:00Z",
+        "imageName": "photo.on.rectangle",
+        "days": [
+            {
+                "id": "D1A2B3C4-E5F6-7890-ABCD-EF1234567891",
+                "date": "2025-07-15T00:00:00Z",
+                "activities": [
+                    {
+                        "id": "AC1B2C3D-E5F6-7890-ABCD-EF1234567892",
+                        "title": "Ankunft in Rom",
+                        "notes": "Flug um 10:00 Uhr",
+                        "time": "2025-07-15T10:00:00Z"
+                    },
+                    {
+                        "id": "AC2B3C4D-E5F6-7890-ABCD-EF1234567893",
+                        "title": "Check-in Hotel",
+                        "notes": "Hotel Colosseum",
+                        "time": "2025-07-15T14:00:00Z"
+                    },
+                    {
+                        "id": "AC3B4C5D-E5F6-7890-ABCD-EF1234567894",
+                        "title": "Abendessen in Trastevere",
+                        "notes": "Restaurant Da Enzo",
+                        "time": "2025-07-15T19:00:00Z"
+                    }
+                ],
+                "checklist": [
+                    {
+                        "id": "CL1B2C3D-E5F6-7890-ABCD-EF1234567895",
+                        "title": "Reisepass einpacken",
+                        "isDone": true
+                    },
+                    {
+                        "id": "CL2B3C4D-E5F6-7890-ABCD-EF1234567896",
+                        "title": "Sonnencreme kaufen",
+                        "isDone": false
+                    }
+                ]
+            },
+            {
+                "id": "D2A3B4C5-E5F6-7890-ABCD-EF1234567897",
+                "date": "2025-07-16T00:00:00Z",
+                "activities": [
+                    {
+                        "id": "AC4B5C6D-E5F6-7890-ABCD-EF1234567898",
+                        "title": "Kolosseum Besichtigung",
+                        "notes": "Tickets online gebucht",
+                        "time": "2025-07-16T09:00:00Z"
+                    },
+                    {
+                        "id": "AC5B6C7D-E5F6-7890-ABCD-EF1234567899",
+                        "title": "Forum Romanum",
+                        "time": "2025-07-16T11:30:00Z"
+                    },
+                    {
+                        "id": "AC6B7C8D-E5F6-7890-ABCD-EF1234567900",
+                        "title": "Mittagessen",
+                        "time": "2025-07-16T13:00:00Z"
+                    }
+                ],
+                "checklist": [
+                    {
+                        "id": "CL3B4C5D-E5F6-7890-ABCD-EF1234567901",
+                        "title": "Kamera-Akku laden",
+                        "isDone": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "B2C3D4E5-F6G7-8901-BCDE-F23456789012",
+        "title": "Städtetrip Berlin",
+        "destination": "Berlin",
+        "startDate": "2025-05-01T08:00:00Z",
+        "endDate": "2025-05-04T20:00:00Z",
+        "imageName": "building.2.crop.circle",
+        "days": [
+            {
+                "id": "D3A4B5C6-E5F6-7890-ABCD-EF1234567902",
+                "date": "2025-05-01T00:00:00Z",
+                "activities": [
+                    {
+                        "id": "AC7B8C9D-E5F6-7890-ABCD-EF1234567903",
+                        "title": "Zugfahrt nach Berlin",
+                        "notes": "ICE 376",
+                        "time": "2025-05-01T08:00:00Z"
+                    },
+                    {
+                        "id": "AC8B9C0D-E5F6-7890-ABCD-EF1234567904",
+                        "title": "Brandenburger Tor",
+                        "time": "2025-05-01T14:00:00Z"
+                    }
+                ],
+                "checklist": []
+            }
+        ]
+    },
+    {
+        "id": "C3D4E5F6-G7H8-9012-CDEF-34567890123A",
+        "title": "Wanderurlaub Alpen",
+        "destination": "Garmisch-Partenkirchen",
+        "startDate": "2025-08-10T06:00:00Z",
+        "endDate": "2025-08-17T18:00:00Z",
+        "imageName": "mountain.2",
+        "days": []
+    }
+]

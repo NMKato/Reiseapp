@@ -8,8 +8,9 @@
 import SwiftUI
 import Foundation
 
-/// Lokale Implementierung - In-Memory Storage für MVP
-/// Später durch SwiftData/CoreData ersetzen
+/// MVVM+R: Repository-Implementation (R-Layer)
+/// Lokale In-Memory Implementierung des TripRepository Protocols
+/// Später Austausch gegen SwiftData-Implementation
 final class LocalTripRepository: TripRepository {
     
     // MARK: - Properties

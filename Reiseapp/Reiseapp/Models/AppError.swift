@@ -1,3 +1,12 @@
+
+//  NavigationModels.swift
+//  Reiseapp
+//
+//  Created by Nikolas Kato on 08.09.25.
+
+
+
+
 import Foundation
 
 // MARK: - App Error

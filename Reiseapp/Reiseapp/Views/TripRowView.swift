@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
-import UIKit
 
-struct TripRow: View {
+struct TripRowView: View {
     let trip: Trip
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            if let data = trip.photoData, let ui = UIImage(data: data) {
-                Image(uiImage: ui)
-                    .resizable()
-                    .scaledToFill()
+            // Image placeholder
+            if let imageName = trip.imageName {
+                Image(systemName: imageName)
+                    .font(.system(size: 28))
+                    .foregroundColor(.blue)
                     .frame(width: 56, height: 56)
+                    .background(Color.gray.opacity(0.1))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .accessibilityHidden(true)
             } else {
@@ -25,30 +26,46 @@ struct TripRow: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.gray.opacity(0.2))
                     Image(systemName: "photo")
+                        .foregroundColor(.gray)
                 }
                 .frame(width: 56, height: 56)
             }
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(trip.title).font(.headline)
-                Text("\(trip.startLocation) → \(trip.destination)")
+                Text(trip.title)
+                    .font(.headline)
+                    .lineLimit(1)
+                
+                Text(trip.destination)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                
                 HStack(spacing: 12) {
-                    Label((trip.startDate?.formatted(
-                        date: .abbreviated, time: .omitted))!,
-                          systemImage: "calendar")
-                    Label("\(trip.persons.count)", systemImage: "person.2")
-                    Label {
-                        Text(trip.totalPrice,
-                             format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
-                    } icon: {
-                        Image(systemName: "eurosign.circle")
+                    if let startDate = trip.startDate {
+                        Label(startDate.formatted(date: .abbreviated, time: .omitted), 
+                              systemImage: "calendar")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                     }
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    
+                    if trip.hasActivities {
+                        Label("\(trip.totalActivities)", systemImage: "star.fill")
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                    }
+                    
+                    if let duration = trip.duration {
+                        Label("\(duration) Tage", systemImage: "clock")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
             .padding(.vertical, 4)
+            
+            Spacer()
         }
+        .contentShape(Rectangle())
     }
 }

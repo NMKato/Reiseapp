@@ -70,7 +70,7 @@ final class LoginViewModel: ObservableObject {
         
         do {
             // Führe Login über Service aus
-            let user = try await authService.login(
+            _ = try await authService.login(
                 email: credentials.email,
                 password: credentials.password
             )
