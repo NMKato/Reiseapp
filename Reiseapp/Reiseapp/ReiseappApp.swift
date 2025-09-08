@@ -19,9 +19,14 @@ struct TravelPlannerApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if auth.isLoggedIn { RootView() } else { LoginView() }
+                if auth.isLoggedIn {
+                    RootView()
+                } else {
+                    LoginView()
+                }
             }
-            .environment(\.appEnvironment, .live)   // wichtig!
+        
+            .environment(\.appEnvironment, .live)
             .environmentObject(auth)
         }
     }
