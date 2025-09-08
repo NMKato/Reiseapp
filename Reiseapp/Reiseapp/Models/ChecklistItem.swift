@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct ChecklistItem: Identifiable, Hashable {
+struct ChecklistItem: Identifiable, Hashable,Codable {
     let id: UUID
     var title: String
     var isDone: Bool

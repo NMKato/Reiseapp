@@ -8,46 +8,112 @@
 import SwiftUI
 import Foundation
 
-struct Trip: Identifiable, Hashable {
+// MARK: - Trip Model
+
+/// Hauptmodel für eine Reise - MVVM+R konform
+struct Trip: Identifiable, Hashable, Codable {
     let id: UUID
     var title: String
-    var startLocation: String
     var destination: String
     var startDate: Date?
     var endDate: Date?
-    var ticketPrice: Double
-    var persons: [String]
-    var photoData: Data?
-    //var imageName: String?
-
+    var imageName: String?
     var days: [DayPlan]
-    var totalPrice: Double {
-        ticketPrice * Double(persons.count)
-    }
 
+    // MARK: - Initialization
+    
     init(
         id: UUID = UUID(),
         title: String,
-        startLocation: String,
         destination: String,
         startDate: Date? = nil,
         endDate: Date? = nil,
-        ticketPrice: Double = 0,
-        persons: [String] = [],
-        photoData: Data? = nil,
-     //   imageName: String? = nil,
+        imageName: String? = nil,
         days: [DayPlan] = []
     ) {
         self.id = id
         self.title = title
-        self.startLocation = startLocation
         self.destination = destination
         self.startDate = startDate
         self.endDate = endDate
-        self.ticketPrice = ticketPrice
-        self.persons = persons
-        self.photoData = photoData
-      //  self.imageName = imageName
+        self.imageName = imageName
         self.days = days
+    }
+    
+    // MARK: - Computed Properties für View-Layer
+    
+    /// Anzahl der geplanten Tage
+    var dayCount: Int {
+        days.count
+    }
+    
+    /// Reisedauer in Tagen (basierend auf Start-/Enddatum)
+    var duration: Int? {
+        guard let startDate = startDate, let endDate = endDate else { return nil }
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+        return components.day
+    }
+    
+    /// Formatiertes Datum für UI
+    var dateRangeText: String {
+        guard let startDate = startDate else { return "Datum nicht festgelegt" }
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        
+        if let endDate = endDate {
+            return "\(formatter.string(from: startDate)) - \(formatter.string(from: endDate))"
+        } else {
+            return "Ab \(formatter.string(from: startDate))"
+        }
+    }
+    
+    /// Placeholder für Bild (für Repository/View Trennung)
+    var displayImageName: String {
+        imageName ?? "photo.on.rectangle"
+    }
+    
+    /// Hat die Reise geplante Aktivitäten
+    var hasActivities: Bool {
+        days.contains { !$0.activities.isEmpty }
+    }
+    
+    /// Gesamtanzahl der Aktivitäten
+    var totalActivities: Int {
+        days.reduce(0) { $0 + $1.activities.count }
+    }
+}
+
+// MARK: - Repository Helper Extensions
+
+extension Trip {
+    
+    /// Erstellt Demo-Trip für Repository Testing
+    static func demo(title: String, destination: String) -> Trip {
+        Trip(
+            title: title,
+            destination: destination,
+            startDate: Date().addingTimeInterval(86400 * 7), // In einer Woche
+            endDate: Date().addingTimeInterval(86400 * 14),   // In zwei Wochen
+            imageName: "photo.on.rectangle"
+        )
+    }
+    
+    /// Business Logic für Day-Management (für Repository/ViewModel)
+    mutating func addDay(_ dayPlan: DayPlan) {
+        days.append(dayPlan)
+    }
+    
+    /// Business Logic für Day-Removal
+    mutating func removeDay(at index: Int) {
+        guard index < days.count else { return }
+        days.remove(at: index)
+    }
+    
+    /// Validation für Repository Layer
+    var isValid: Bool {
+        !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !destination.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }
