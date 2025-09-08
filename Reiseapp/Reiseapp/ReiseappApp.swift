@@ -1,18 +1,20 @@
 //
-//  ReiseappApp.swift
+//  TravelApp.swift
 //  Reiseapp
 //
-//  Created by Florian Rhein on 24.03.25.
-// test
-
+//  Created by Waldemar Dietler on 08.09.25.
+//
 
 import SwiftUI
 
 @main
-struct ReiseappApp: App {
+struct TravelApp: App {
+  //  @StateObject private var tripsView.tripStore = TripStore()
+
     var body: some Scene {
         WindowGroup {
             LoginView()
+             //   .environmentObject(tripStore)
         }
     }
 }
