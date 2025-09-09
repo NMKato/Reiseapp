@@ -43,3 +43,7 @@ struct AddTripSheet: View {
         }
     }
 }
+
+#Preview {
+    AddTripSheet { _,_ in }
+}

@@ -132,3 +132,9 @@ struct DayPlanCard: View {
         .cornerRadius(8)
     }
 }
+
+#Preview {
+    NavigationStack {
+        TripDetailView(trip: Trip.demo(title: "Sommerurlaub", destination: "Barcelona"))
+    }
+}

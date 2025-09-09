@@ -52,3 +52,7 @@ struct AddTripView: View {
         }
     }
 }
+
+#Preview {
+    AddTripView { _ in }
+}
