@@ -7,12 +7,16 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct LoginView: View {
+
     @EnvironmentObject private var auth: AuthStore
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showingAlert = false
     
+
     var body: some View {
         ZStack {
             LinearGradient(
@@ -21,7 +25,7 @@ struct LoginView: View {
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
-            
+
             VStack(spacing: 24) {
                 // Titel
                 VStack(spacing: 4) {
@@ -35,17 +39,21 @@ struct LoginView: View {
                         .foregroundStyle(.violett)
                         .shadow(color: .yellow, radius: 3, x: 0, y: 5)
                 }
+
                 .padding(.top, 40)
                 
                 Spacer()
                 
+
                 // Eingabefelder
                 VStack(spacing: 16) {
                     HStack {
                         Image(systemName: "envelope.fill")
                             .foregroundColor(.white.opacity(0.8))
                         TextField("Username eingeben", text: $username)
+
                             .foregroundColor(.white)
+
                             .autocapitalization(.none)
                             .disableAutocorrection(true)
                     }
@@ -53,12 +61,14 @@ struct LoginView: View {
                     .background(Capsule().fill(Color.white.opacity(0.15)))
                     .overlay(Capsule().stroke(Color.blue.opacity(0.7), lineWidth: 2))
                     .shadow(color: .blue.opacity(0.3), radius: 5, x: 0, y: 3)
+
                     
                     HStack {
                         Image(systemName: "key.fill")
                             .foregroundColor(.white.opacity(0.8))
                         SecureField("Passwort eingeben", text: $password)
                             .foregroundColor(.white)
+
                             .autocapitalization(.none)
                     }
                     .padding()
@@ -67,6 +77,7 @@ struct LoginView: View {
                     .shadow(color: .blue.opacity(0.3), radius: 5, x: 0, y: 3)
                 }
                 .padding(.horizontal)
+
                 
                 // Login Button
                 Button {
@@ -90,7 +101,7 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal)
                 }
-                
+
                 // Gast-Login Button
                 Button {
                     auth.isLoggedIn = true
@@ -110,6 +121,7 @@ struct LoginView: View {
                     .padding(.horizontal)
                     .accessibilityLabel("Als Gast fortfahren")
                 }
+
                 
                 Spacer()
             }
@@ -119,11 +131,14 @@ struct LoginView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text("Bitte geben Sie Benutzername und Passwort ein")
+
         }
     }
 }
 
 #Preview {
     LoginView()
+
         .environmentObject(AuthStore())
 }
+
