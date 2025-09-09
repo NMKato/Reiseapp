@@ -39,24 +39,6 @@ struct TripRowView: View {
                 .resizable().scaledToFill()
                 .frame(width: 44, height: 44)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-        } else if let url = trip.photoURL {
-            AsyncImage(url: url) { phase in
-                switch phase {
-                case .empty:
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8).fill(.thinMaterial)
-                        ProgressView()
-                    }
-                case .success(let img):
-                    img.resizable().scaledToFill()
-                case .failure:
-                    placeholder
-                @unknown default:
-                    placeholder
-                }
-            }
-            .frame(width: 44, height: 44)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
         } else {
             placeholder
                 .frame(width: 44, height: 44)
