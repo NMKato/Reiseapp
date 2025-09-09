@@ -23,3 +23,7 @@ struct RootView: View {
         }
     }
 }
+#Preview {
+    RootView()
+        .environment(\.appEnvironment, .preview)
+}

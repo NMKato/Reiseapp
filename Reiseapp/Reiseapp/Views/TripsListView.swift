@@ -77,3 +77,9 @@ struct TripsListView: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        TripsListView(repo: MockTripRepository())
+    }
+}
