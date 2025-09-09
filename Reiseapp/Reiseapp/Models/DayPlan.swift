@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct DayPlan: Identifiable, Hashable {
+struct DayPlan: Identifiable, Hashable, Codable {
     let id: UUID
     var date: Date
     var activities: [Activity]

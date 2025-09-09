@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct Activity: Identifiable, Hashable {
+struct Activity: Identifiable, Hashable,Codable {
     let id: UUID
     var title: String
     var notes: String?
