@@ -19,12 +19,8 @@ struct LoginView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [Color.darkBlue, Color.blue, Color.lightBlue]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            // Background wird jetzt über themedBackground() in ReiseappApp.swift gesetzt
+            Color.clear
 
             VStack(spacing: 24) {
                 // Titel
@@ -126,6 +122,7 @@ struct LoginView: View {
                 Spacer()
             }
             .padding(.top, 40)
+            .dismissKeyboard()
         }
         .alert("Fehler", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }

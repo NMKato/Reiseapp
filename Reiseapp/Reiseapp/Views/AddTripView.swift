@@ -33,6 +33,7 @@ struct AddTripView: View {
                     }
                 }
             }
+            .dismissKeyboard()
             .navigationTitle("Neue Reise")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

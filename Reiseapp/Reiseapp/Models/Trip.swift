@@ -19,6 +19,16 @@ struct Trip: Identifiable, Hashable, Codable {
     var endDate: Date?
     var imageName: String?
     var days: [DayPlan]
+    
+    // New properties for API integration
+    var numberOfAdults: Int
+    var numberOfChildren: Int
+    var budget: Double?
+    var currency: String
+    var hotelBookings: [HotelBooking]
+    var flightBookings: [FlightBooking]
+    var weatherForecast: WeatherForecast?
+    var destinationCoordinates: Coordinates?
 
     // MARK: - Initialization
     
@@ -29,7 +39,15 @@ struct Trip: Identifiable, Hashable, Codable {
         startDate: Date? = nil,
         endDate: Date? = nil,
         imageName: String? = nil,
-        days: [DayPlan] = []
+        days: [DayPlan] = [],
+        numberOfAdults: Int = 1,
+        numberOfChildren: Int = 0,
+        budget: Double? = nil,
+        currency: String = "EUR",
+        hotelBookings: [HotelBooking] = [],
+        flightBookings: [FlightBooking] = [],
+        weatherForecast: WeatherForecast? = nil,
+        destinationCoordinates: Coordinates? = nil
     ) {
         self.id = id
         self.title = title
@@ -38,6 +56,14 @@ struct Trip: Identifiable, Hashable, Codable {
         self.endDate = endDate
         self.imageName = imageName
         self.days = days
+        self.numberOfAdults = numberOfAdults
+        self.numberOfChildren = numberOfChildren
+        self.budget = budget
+        self.currency = currency
+        self.hotelBookings = hotelBookings
+        self.flightBookings = flightBookings
+        self.weatherForecast = weatherForecast
+        self.destinationCoordinates = destinationCoordinates
     }
     
     // MARK: - Computed Properties für View-Layer
@@ -82,6 +108,20 @@ struct Trip: Identifiable, Hashable, Codable {
     /// Gesamtanzahl der Aktivitäten
     var totalActivities: Int {
         days.reduce(0) { $0 + $1.activities.count }
+    }
+    
+    /// Gesamtanzahl der Reisenden
+    var totalTravelers: Int {
+        numberOfAdults + numberOfChildren
+    }
+    
+    /// Formatiertes Budget
+    var formattedBudget: String? {
+        guard let budget = budget else { return nil }
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = currency
+        return formatter.string(from: NSNumber(value: budget))
     }
 }
 

@@ -8,22 +8,40 @@
 import SwiftUI
 
 struct RootView: View {
-    @Environment(\.appEnvironment) private var env
+    @ObservedObject private var env: AppEnvironment
+    
+    init(appEnvironment: AppEnvironment? = nil) {
+        self.env = appEnvironment ?? AppEnvironment.live
+    }
 
     var body: some View {
-        TabView {
+        TabView(selection: Binding(
+            get: { env.selectedTab },
+            set: { env.selectedTab = $0 }
+        )) {
             NavigationStack { TripsListView(repo: env.tripRepository) }
                 .tabItem { Label("Reisen", systemImage: "list.bullet") }
+                .tag(0)
 
-            NavigationStack { Text("Explore (später)") }
+            ExploreView()
                 .tabItem { Label("Entdecken", systemImage: "globe") }
+                .tag(1)
 
-            NavigationStack { Text("Einstellungen (später)") }
+            SettingsView()
                 .tabItem { Label("Einstellungen", systemImage: "gearshape") }
+                .tag(2)
         }
+        .onAppear {
+            // Mache TabView-Hintergrund durchsichtig für themed background
+            let appearance = UITabBarAppearance()
+            appearance.configureWithTransparentBackground()
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+        .environment(\.appEnvironment, env)
     }
 }
 #Preview {
-    RootView()
+    RootView(appEnvironment: .preview)
         .environment(\.appEnvironment, .preview)
 }
