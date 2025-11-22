@@ -98,6 +98,7 @@ iOSInjectionProject/
 .env.development
 .env.production
 .env.staging
+.env.backup
 
 # Configuration files containing secrets
 Config.plist
